@@ -1,0 +1,64 @@
+<html>
+<head>
+	<title>Ecuación de Widmark</title>
+		<style>
+			tabla,
+			tabla td {
+				border: 1px solid #cccccc;
+				}
+				td {
+					text-align: center;
+					vertical-align: middle;
+				}
+		</style>
+	
+</head>
+<body>
+	<h1>Ecuación de Widmark</h1>
+	<form method="post" id="form">
+		<label for="peso">Peso del cuerpo :</label>
+		<input type="text" id="peso" name="peso">
+		<label for="peso">[Kg]</label><br><br>
+		
+		<label for="CoefSex">Coeficiente por Sexo:</label>
+		<input type="text" id="CoefSex" name="CoefSex">
+		<label for="CoefSex">[masculino= 0.68 | femenino= 0.55]</label><br><br>
+
+		<label for="CantBebida">Cantidad de bebida ingerida:</label>
+		<input type="text" id="CantBebida" name="CantBebida">
+		<label for="CantBebida">[mL]</label><br><br>
+
+		<label for="graduacion">Graduación Alcohólica de la bebida:</label>
+		<input type="text" id="graduacion" name="graduacion">
+		<label for="graduacion">[%]</label><br><br>
+		
+		<input type="button" value="Calcular" onclick="generarTabla()">
+	</form>
+
+	<div id="AquiLaTabla"></div>
+
+	
+	<script>
+		function generarTabla() {
+			var peso = parseFloat(document.getElementById('peso').value);
+			var CoefSex = parseFloat(document.getElementById('CoefSex').value);
+			var CantBebida = parseInt(document.getElementById('CantBebida').value);
+			var graduacion = parseFloat(document.getElementById('graduacion').value);
+			
+
+			
+			var tabla = "<h2>Tabla de concentración alcohólica por horas en sangre</h2><table border='1'><tr><th>Hora</th><th>[gr/L sangre]</th></tr>";
+			var concentracionInicial=(CantBebida*graduacion/100*0.8)/( peso*CoefSex);
+			var resultado =1000;
+			for(var i = 0; i <= 10 && resultado!=0; i++) {
+				resultado = concentracionInicial - i*0.15;
+				if (resultado<0) { resultado=0 };
+				tabla += "<tr><td>" + i + "</td><td>" + resultado.toFixed(2) + "</td></tr>";
+			}
+			tabla += "</table>";
+			document.getElementById('AquiLaTabla').innerHTML = tabla;
+		};
+	</script>
+	
+</body>
+</html>
