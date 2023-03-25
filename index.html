@@ -49,7 +49,7 @@
 			var CantBebida = parseInt(document.getElementById('CantBebida').value);
 			var graduacion = parseFloat(document.getElementById('graduacion').value);
 			
-			if (TRUE) {
+		
 				var tabla = "<h2>Tabla de concentración alcohólica en sangre según horas desde el momento de ingestión</h2><table border='1'><tr><th>Hora</th><th>[gr/L sangre]</th></tr>";
 				var concentracionInicial=(CantBebida*graduacion/100*0.8)/( peso*CoefSex);
 				var resultado =1000;
@@ -62,10 +62,7 @@
 				document.getElementById('AquiLaTabla').innerHTML = tabla;
 			};
 
-		} else {
-		  //  block of code to be executed if the condition is false
-			document.getElementById('AquiLaTabla').innerHTML = "<p>Has bebido mucho y no completaste los datos<p>";
-		}
+	
 			
 	</script>
 	
